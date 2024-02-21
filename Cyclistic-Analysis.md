@@ -101,3 +101,20 @@ The cleaning of the dataset led to the removal of **1464313** ride
 observations.  
 The dataset for analysis is composed of **4210136** rows and **9**
 columns.
+
+#### Analysis
+For this step, summary statistics were performed in R to determine differences between members and casuals
+riders. Number of valid rides were computed, the average length ride between the period of Feb-2023 and
+Jan-2024, also the maximum ride length for the time period.  
+Member-type analyses were conducted to determine the ride distribution among the 4 million rides, the 
+frequency of trips on each day of the week, the average ride length, also the bike preferences for each
+type of member.  
+The detailed analysis can be seen [here](https://github.com/seungisanrin/cyclistic-analysis/blob/main/cyclistic_analysis.r).  
+  
+#### Data Visualisation
+In creating this visualisation, the flexdashboard package in R was used. The package allows for the creation of dashboards
+using rmarkdown, the link to the dashboard is [here](https://rpubs.com/seungisanrin/cyclistic-analysis).
+![image](https://github.com/seungisanrin/cyclistic-analysis/assets/159424518/7a526398-251d-47f8-a91a-33a7483becc6)
+
+
+
