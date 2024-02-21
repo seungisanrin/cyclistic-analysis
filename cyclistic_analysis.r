@@ -58,7 +58,9 @@ avg_ride_length <- round(as.numeric(mean(clean_cyc_df$ride_length)), digits = 2)
 
 max_ride_length <- as.numeric(max(clean_cyc_df$ride_length))
 
-#Member type distribution
+n_rides <- nrows(clean_cyc_df)
+
+#Member type distribution  
 no_trip_pmem <- clean_cyc_df %>%
   group_by(member_casual) %>%
   summarise(no_trips = n())
@@ -69,8 +71,8 @@ marker = list(colors = color_pie)) %>%
   add_pie(hole = 0.42) %>%
   layout(title = "Ride Distribution: Member Type", annotations=list(text=paste("Over 4M Rides"),"showarrow" =F))
 fig_pi_chart
-?paste
-#Number of rides per day of the week
+
+#Number of rides per day of the week  
 ride_fq_dotw <- clean_cyc_df %>%
   group_by(weekday) %>%
   summarise(no_trips = n()) %>%
@@ -82,7 +84,7 @@ fig_ride_pq <- fig_ride_pq %>%
 
 fig_ride_pq
 
-#Average ride length per member type
+#Average ride length per member type  
 avg_ride_per_membertype <- clean_cyc_df %>%
   group_by(member_casual) %>%
   summarise(avg_no_trips = mean(ride_length))
@@ -96,7 +98,7 @@ fig_avg_ride_p_mem <- fig_avg_ride_p_mem %>%
 
 fig_avg_ride_p_mem
 
-#Average length of rides per day of the week
+#Average length of rides per day of the week  
 avg_ride_pdotw <- clean_cyc_df %>%
   group_by(weekday) %>%
   summarise(avg_no_trips = mean(ride_length))
@@ -108,7 +110,7 @@ fig_avg_pdotw <- fig_avg_pdotw %>%
 
 fig_avg_pdotw
 
-#Number of trips per day per user type
+#Number of trips per day per user type  
 no_trips_pday_puser <- clean_cyc_df %>%
   group_by(weekday, member_casual) %>%
   summarise(no_trips = n())
@@ -124,7 +126,7 @@ ggplot(no_trips_pday_puser, mapping = aes(x=weekday, y=no_trips, fill=member_cas
 
 fig_no_trips_pday
 
-#Number of trips at every hour of the day
+#Number of trips at every hour of the day  
 trips_p_tod <- clean_cyc_df %>%
   group_by(hr_of_day = hour(started_at), member_casual) %>%
   summarise(no_trips = n())
@@ -143,7 +145,7 @@ fig_trips_p_tod <- ggplotly(
 fig_trips_p_tod
 
 
-#Top five starting Stations for casual
+#Top five starting Stations for casual  
 top_5_start_stations_cas <- clean_cyc_df %>%
   filter(member_casual == "casual") %>%
   group_by(start_station_name) %>%
@@ -156,7 +158,7 @@ fig_top_5_sscas <- plot_ly(top_5_start_stations_cas, x=~no_trips, y=~start_stati
     yaxis = list(title = "Station Name"))
 fig_top_5_sscas
 
-#Top five starting Stations for members
+#Top five starting Stations for members  
 top_5_start_stations_mem <- clean_cyc_df %>%
   filter(member_casual == "member") %>%
   group_by(start_station_name) %>%
@@ -169,7 +171,7 @@ fig_top_5_ssmem <- plot_ly(top_5_start_stations_mem, x=~no_trips, y=~start_stati
     yaxis = list(title = "Station Name"))
 fig_top_5_ssmem
 
-#Preferred Bike Type for each Member Type
+#Preferred Bike Type for each Member Type  
 member_pref_bike_type <- clean_cyc_df %>%
   group_by(rideable_type, member_casual) %>%
   summarise(no_trips = n())
@@ -184,12 +186,12 @@ ggplot(member_pref_bike_type, mapping = aes(x=rideable_type, y=no_trips, fill=me
 )
 fig_mem_pref_bk
 
-#Average ride length for each customer type and each bike type
+#Average ride length for each customer type and each bike type  
 avg_rl_bt_ct <- clean_cyc_df %>%
   group_by(rideable_type, member_casual) %>%
   summarise(avg_ride_length = mean(ride_length))
 
-ggplotly(
+fig_avg_rl_bt <- ggplotly(
 ggplot(avg_rl_bt_ct, mapping = aes(x=rideable_type, y=avg_ride_length, fill=member_casual)) +
   geom_bar(position = "dodge", stat = "identity") +
   labs(title = "Average Ride Length: Customer-Bike Type Perspective", y = "Average Ride Length (Mins)", x ="Bike Type") +
@@ -203,7 +205,7 @@ month_ride_type <- clean_cyc_df %>%
   group_by(ride_month = month(started_at, label=  TRUE, abbr = FALSE), member_casual) %>%
   summarise(no_trips = n())
 
-ggplotly(
+fig_month_ride <- ggplotly(
 ggplot(month_ride_type, mapping = aes(x=ride_month, y=no_trips, fill=member_casual)) +
   geom_bar(position = "dodge", stat = "identity") +
   labs(title = "Average Ride Length: Customer-Bike Type Perspective", y = "Average Ride Length (Mins)", x ="Month") +

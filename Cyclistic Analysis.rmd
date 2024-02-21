@@ -61,3 +61,5 @@ A brief outline providing details on the steps taken to clean the dataset for an
   
 The cleaning of the dataset led to the removal of **1,464,313** ride observations.  
 The dataset for analysis is composed of **4,210,136** rows and **9** columns.
+
+#### Analysis
