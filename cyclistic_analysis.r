@@ -3,10 +3,9 @@ library(dplyr)
 library(readr)
 library(tidyverse)
 
-setwd("C:/Users/seung/OneDrive/Desktop/Working Dataset")
-
+setwd("C:/Users/seung/OneDrive/Documents/GitHub/cyclistic-analysis/cyclistic-analysis/data")
 #Creating the data frame from the csv files in the folder
-origin_cyc_df <- list.files(path = "C:/Users/seung/OneDrive/Desktop/Working Dataset") %>%
+origin_cyc_df <- list.files(path = "C:/Users/seung/OneDrive/Documents/GitHub/cyclistic-analysis/cyclistic-analysis/data") %>%
   lapply(read_csv) %>%
   bind_rows()
 
@@ -36,15 +35,20 @@ clean_cyc_df <- cyc_df %>%
            is.na(member_casual)|
            is.na(started_at)|
            is.na(ended_at)))
-
-no_rows_dropped <- nrow(cyc_df) - nrow(clean_cyc_df)
-
 #DATA PREPARATION PHASE
 #Determining the length of each ride
-clean_cyc_df$ride_length <- abs(difftime(clean_cyc_df$ended_at, clean_cyc_df$started_at, units = "mins"))
+clean_cyc_df$ride_length <- difftime(clean_cyc_df$ended_at, clean_cyc_df$started_at, units = "mins")
 
+#Removing trips that are less than a minute due to false starts
+clean_cyc_df <- clean_cyc_df %>%
+  filter(ride_length > 1)
+
+no_rows_dropped <- nrow(cyc_df) - nrow(clean_cyc_df)
+rows_analysis <- nrow(clean_cyc_df)
 #Creating a column for the day of the week
 clean_cyc_df$weekday <- wday(clean_cyc_df$started_at, label=TRUE, abbr=FALSE)
+
+dim(clean_cyc_df)
 
 #ANALYSIS PHASE
 avg_ride_length <- round(as.numeric(mean(clean_cyc_df$ride_length)), digits = 2)

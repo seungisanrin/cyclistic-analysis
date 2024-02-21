@@ -37,14 +37,27 @@ in the customer types for Cyclistic. The data is hosted on the Amazon Web Server
 #### Preparation
 The language used in the preparation and cleaning of the dataset to be used for analysis is R. R is a dynamic programming language that can be used in data preparation, analysis, visualisations, as well as for
 creating reports.  
-The 12 datasets (monthly) used for this analysis, each with 13 columns and between 100,000 and 700,000+ rows. The datasets were combined into a dataframe in R.
+The 12 datasets (monthly) used for this analysis, each with 13 columns and between 100,000 and 700,000+ rows. The datasets were combined into `origin_cyc_df` dataframe in R.
 ```{r dataset compilation, include=FALSE}
-setwd("C:/Users/seung/OneDrive/Desktop/Working Dataset")
-origin_cyc_df <- list.files(path = "C:/Users/seung/OneDrive/Desktop/Working Dataset") %>%
+setwd("C:/Users/seung/OneDrive/Documents/GitHub/cyclistic-analysis/cyclistic-analysis/data")
+origin_cyc_df <- list.files(path = "C:/Users/seung/OneDrive/Documents/GitHub/cyclistic-analysis/cyclistic-analysis/data") %>%
   lapply(read_csv) %>%
   bind_rows()
 ```
-The combined dataframe has **5674449 rows** and **13 columns**.
+The combined dataframe has **5,674,449 rows** and **13 columns**.
 ```{r column details}
 glimpse(origin_cyc_df)
 ```
+
+#### Cleaning and Manipulation
+A brief outline providing details on the steps taken to clean the dataset for analysis.  
++ The columns relevant for the analysis were selected, this includes (ride_id, rideable_type, started_at, start_station_name, ended_at, end_station_name, member_casual).  
++ Duplicates in the `ride_id` columns were checked for, and the column was determined to be unique.  
++ Checked the `ride_id` column for nonconforming observations, all observations are made up of 16 character strings. All observations of the `ride_id` variable were valid.  
++ Filtered through all columns to remove ride observations that had any of its variables blank.  
++ Created column `ride_length` to determine the length of each ride observation in minutes.  
++ Dropped observations with less `ride_length` less than 1 minute, which are potentially false starts or attempts at re-docking bikes. As well as observations with negative values for `ride_length`.  
++ Created column `weekday` to denote the day of the week a ride was embarked on.  
+  
+The cleaning of the dataset led to the removal of **1,464,313** ride observations.  
+The dataset for analysis is composed of **4,210,136** rows and **9** columns.
