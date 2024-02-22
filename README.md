@@ -115,3 +115,11 @@ The detailed analysis can be seen [here](https://github.com/seungisanrin/cyclist
 In creating this visualisation, the flexdashboard package in R was used. The package allows for the creation of dashboards
 using rmarkdown, the link to the dashboard is [here](https://rpubs.com/seungisanrin/cyclistic-analysis).
 ![image](https://github.com/seungisanrin/cyclistic-analysis/assets/159424518/7a526398-251d-47f8-a91a-33a7483becc6)
+
+#### Recommendations
+1. **Weekend Promotions**: Casual riders seem to use our bikes more on weekends. We could target promotions for ride memberships specifically on weekends to encourage them to convert to annual members.  
+2. **Targeted Ads**: Casual riders mostly prefer the Classic Bike. We could create targeted advertisements for casual riders, highlighting the benefits of becoming annual members, with a focus on the Classic Bike.  
+3. **Daily Transportation Incentives**: Both casual and member riders frequently use our bikes at 8 AM and 5 PM, indicating a daily transportation routine, likely for office workers. Offering promotions tailored for daily transportation needs could motivate casual riders to become members.  
+4. **Station-Specific Promotions**: We could target promotions to the top 5 most visited start stations for casual riders. This could help create awareness among casual riders about the benefits of membership.  
+5. **Seasonal Usage Insights**: During winter, casual riders prefer the Classic or Electric Bike, while in summer, there's an increase in usage of all bike types, especially the Classic Bike. We could adjust our marketing strategies seasonally to highlight the benefits of membership based on bike preferences.
+6. **Long Ride Promotions**: Casual riders tend to embark on longer trips than members on average. Offering promotions for subscriptions with benefits for long rides could incentivize casual riders to sign up for annual memberships.
