@@ -12,7 +12,7 @@ library(tidyverse)
 ```
 
 **Author**: Gisanrin Oluwaseun  
-**Date Updated**: 20th February, 2024
+**Date Updated**: 22nd February, 2024
 
 **Notice**  
 This publication was completed as a part of the Google Data Analytics course on Coursera. You may get in touch with me via email at [seungisanrin@gmail.com](mailto:www.seungisanrin@gmail.com).  
